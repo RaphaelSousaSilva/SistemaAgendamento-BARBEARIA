@@ -21,7 +21,6 @@ A full-sized drag & drop JavaScript event calendar
 
 # Disclaimers
 
-Projeto feito durante a faculdade e com tempo curto tempo de entrega.
-A organização e distribuição de pastas precisa ser muito melhoradas,
-além de ter algumas escolhas bem confusas. 
-Entretando foi tudo feito do zero, tendo o primeiro contato com o framework
+Projeto feito durante a faculdade e com curto período de entrega, sendo o primeiro contato com o framework.
+A organização e distribuição de pastas precisão ser muito melhoradas,
+além de ter algumas escolhas bem confusas. Entretando tudo está funcionando perfeitamente.
