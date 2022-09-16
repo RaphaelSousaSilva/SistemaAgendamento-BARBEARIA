@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+
+::-webkit-scrollbar { 
+  display: none; 
+  }
+
+body {
+    margin: 0px 0px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../imgs/barbearia1.jpg);
+   -webkit-background-size: cover;
+   -moz-background-size:  cover;
+   -o-background-size: cover;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   position: relative;
+   height: 100%;
+   width: 100vw;
+  }
+
+  .titulo h3{
+    display:inline;
+    padding: 5px 5px;
+    color: white;
+    background-color: rgba(0, 0, 0,0.39);
+    border: 1px solid rgb(248, 243, 244);
+    margin-top: 0px;
+    font-size: 5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform:uppercase;
+    letter-spacing: .1rem;
+    text-align: center;
+    display:block;
+    width:fit-content;
+    font-size: clamp(1em, 1em + 1vw, 2em);
+    font-weight:bolder;
+    position: relative;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom:20px;
+   
+  }
+  .modelo{ 
+     flex-direction: column-reverse;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 10px;
+
+
+  }
+
+  .subtitulo h1{
+    display:inline;
+    padding: 5px 5px;
+    color: white;
+    background-color: rgba(0, 0, 0,0.39);
+
+    margin-top: 0px;
+    font-size: 5rem;
+    font-weight: bold;
+    font-weight: 200;
+    margin-bottom: 10px;
+    text-transform:none;
+    letter-spacing: .1rem;
+    text-align: center;
+    display:block;
+    width:fit-content;
+    font-size: clamp(1em, 1em + 1vw, 2em);
+    font-weight:lighter;
+    position: relative;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom:20px;
+  }
+  h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: medium;
+    text-decoration:double;
+}
+.btn{
+  
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*quadrados dos dias da semana*/
+  #calendar { background: linear-gradient( rgba(255,255, 255, 0.70), rgba(255, 255, 255, 0.40) );
+    width:600px;
+    right: 600px;
+    max-width: 1100px;
+    margin: 0 auto;
+    margin-top: 30px;
+
+  }
+
+/*tela que abre clicando no agendamento feito*/
+.visualizar-agend{
+  display: block;
+  background-color: rgb(151, 151, 151);
+}
+
+/*tela que abre quando editar o agendamento*/
+.form-edit{
+  display: none;
+  background-color: rgb(151, 151, 151);
+}
+/*tela que abre para realizar o agendamento*/
+.modal-body{
+  background-color: rgb(151, 151, 151);
+}
+.container{
+  background: linear-gradient( rgba(255,255, 255, 0.70), rgba(255, 255, 255, 0.40) );
+   width:auto;
+ 
+  
+}
+
+  footer {
+    position:static;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    color: rgb(189, 189, 189);
+    width: 100%;
+    height: 250px;    
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: -0px;
+    list-style-position: inside;
+  
+    
+}

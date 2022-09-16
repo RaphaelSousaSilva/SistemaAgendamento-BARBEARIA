@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+    <meta charset='utf-8' />
+    <!--menu-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        {% block style %}
+        {% endblock %}
+        <link rel="stylesheet" href="{{ url_for('agendamento.static', filename='css/menu_calendar.css') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='imgs/scissors.svg') }}" />
+        <title>
+            {% block title%}
+            {% endblock %}
+        </title>
+        <!--fim menu-->
+    <!-- não altere a orderm dos hrefs -->
+    <link rel='stylesheet' href="{{ url_for('agendamento.static', filename='css/main.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link href="{{ url_for('agendamento.static', filename='css/calendar.css') }}"  rel='stylesheet'>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='imgs/scissors.svg') }}" />
+
+</head>
+<body>
+  <!--menu-->
+    {% if request.path not in ['/', 'home'] %}
+    <nav class="navbar navbar-expand-lg sticky">
+    {% else %}
+    <nav class="navbar navbar-expand-lg">
+    {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class='alert alert-{{category}} alert-dismissible' role="alert">
+                    <button href="#" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="content">
+            <div class="logo" {% if request.path == "/home" or request.path == "/" %} href="#home" {% else %} href="{{url_for('main.home_page')}}" {% endif %}><a href="#"><i class="bi bi-scissors"></i>Dom Fígaro<i style="margin-left: 5px;"    class="bi bi-scissors"></i></a></div>
+            <ul class="menu-list">
+                <div class="icon cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+                {% if request.path == "/home" or request.path == "/" %}
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#galery">Galeria</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="contact">Contato</a></li>
+                {% else %}
+                <li><a class="active" href="{{url_for('main.home_page')}}#home">Home</a></li>
+               
+                <li><a href="{{url_for('main.home_page')}}#services">Serviços</a></li>
+                <li><a href="{{url_for('main.home_page')}}#galery">Galeria</a></li>
+                 <li><a href="{{url_for('main.home_page')}}#about">Sobre</a></li>
+                <li><a href="{{url_for('main.contact_page')}}">Contato</a></li>
+                {% endif %}
+                <li><a href="{{url_for('agendamento.agendamento_page')}}">Agendamento</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a id="login" href="{{ url_for('auth.logout_page') }}">Sair</a></li>
+                {% else %}
+                    <li><a id="login" href="{{ url_for('auth.login_page') }}">Login</a></li>
+                {% endif %}
+            </ul>
+            <ul class="icon-list">
+                <li class="nav-item"  >
+                    <a class="nav-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://pt-br.facebook.com/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                </li>
+            </ul>
+            <div class="icon menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    {% block content%}
+    {% endblock %}
+
+    <script>
+        const body = document.querySelector("body");
+        const menu = document.querySelector(".menu-list");
+        const navbar = document.querySelector(".navbar");
+        const menuBtn = document.querySelector(".menu-btn");
+        const cancelBtn = document.querySelector(".cancel-btn");
+        menuBtn.onclick = ()=>{
+            menu.classList.add("active");
+            body.classList.add("disabledScroll");
+            menuBtn.classList.add("hide");
+        };
+        cancelBtn.onclick = ()=>{
+            menu.classList.remove("active");
+            body.classList.remove("disabledScroll");
+            menuBtn.classList.remove("hide");
+        };
+         window.onscroll = ()=>{
+            this.scrollY >20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+        };
+  
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
+    <!--Fim menu-->
+<div class="modelo">
+    <div class="titulo">
+      <h3>Calendário de agendamentos</h3>
+    </div>
+    <div class="subtitulo">
+
+        <h1>Todos os seus agendamentos estão disponiveis aqui.
+        Clique no botão ou na data desejada para agendar um novo horario.</br>
+        Caso queira editar ou cancelar agendamentos existentes, clique sobre ele no icone dentro do calendario</br>
+        Ao agendar ou editar um horario atente-se a data inicial e final, o atendimento máximo é de 1 hora e meia, <br>
+        seu agendamento não será realizado caso ultrapasse isto.</h1>
+
+      </div>
+      </div>
+  <div class="d-flex justify-content-center">
+    
+    <button class="btn btn-danger btn-novo-agend btn-danger">Agende um horário</button>
+    <br>
+    <br>
+  </div>  
+  </div>
+
+  <div id='calendar'></div>
+
+<!-- Modal para visualizar agendamentos existentes-->
+    <div class="modal fade" id="visualizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalhes do Agendamento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="visualizar-agend">
+            <dl class="row">
+                <dt class="col-sm-3">ID do Agendamento</dt>
+                <dd class="col-sm-9" id="id"></dt>
+
+                <dt class="col-sm-3">Descrição</dt>
+                <dd class="col-sm-9" id="title"></dt>
+
+                <dt class="col-sm-3">Preço</dt>
+                <dd class="col-sm-9" id="preco"></dt>
+
+                <dt class="col-sm-3">Barbeiro</dt>
+                <dd class="col-sm-9" id="barbeiro"></dt>
+
+                <dt class="col-sm-3">Início</dt>
+                <dd class="col-sm-9" id="start"></dt>
+
+                <dt class="col-sm-3">Fim</dt>
+                <dd class="col-sm-9" id="end"></dt>
+            </dl>
+            <button class="btn btn-warning btn-editar-agend">Editar</button>
+            <a href="" id="apagarAgendamento" class="btn btn-danger" >Apagar</a>
+          </div>
+
+          <div class="form-edit">
+                <!-- Inicio do Form de Edição-->
+                <span id="msg-edit"></span>
+                <form action='' id="editAgend" method='POST'>
+                  {{ form.csrf_token }}
+                  {{ form.hidden_tag() }}
+
+                    <!-- Seleção de serviços  -->
+                  <input type="hidden" name="id" id="id">
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"> {{ form.servico.label }}</label>
+                    <div class="col-sm-10">
+                      <select name="servico" id="servico" class="form-control">
+                        {% for options in form.servico %}
+                          {{ options }}
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+    
+                  <!-- Seleção de Barbeiros -->
+                  <div class="form-group row">
+                      <label class="col-sm-2 col-form-label"> Selecione o Barbeiro</label>
+                      <div class="col-sm-10">
+                        <select name="barbeiros" id="barbeiros" class="form-control">
+                          {% for options in form.barbeiro %}
+                            {{ options }}
+                          {% endfor %}
+                        </select>
+                    </div>
+                  </div>
+    
+                    <!-- Horario de atendimento -->
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> {{ form.inicio_atendimento.label }}</label>
+                        <div class="col-sm-10">
+                          {{ form.inicio_atendimento(class="form-control date-time", id="inico-atend-edit", onkeypress="DataHora(event, this)") }}
+                        </div>
+                      </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label"> Fim do atendimento</label>
+                        <div class="col-sm-10">
+                          {{ form.fim_atendimento(class="form-control date-time", id="fim-atend-edit", onkeypress="DataHora(event, this)") }}
+                        </div>
+                    </div>
+                        <div class="form-group row">
+                          <div class="col-sm-10">
+                            <button type="button" class="btn btn-primary btn-cancelar-edit">Cancelar</button>
+                            {{ form.submit(class="btn btn-danger", value="Editar") }}
+                            <!-- <button type="submit" name="agendEvent" id="agendEvent" value="agendEvent" class="btn btn-success">Agendar</button> -->
+                          </div>
+                        </div>
+                </form>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inicio modal de cadastro -->
+    <div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agendar Horário</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Inicio do Form de cadastro de agendamento-->
+            <span id="msg-agendamento"></span>
+            <form action='' id="addAgend" method='POST'>
+              {{ form.csrf_token }}
+              {{ form.hidden_tag() }}
+              <!-- Seleção de serviços  -->
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"> {{ form.servico.label }}</label>
+                <div class="col-sm-10">
+                  <select name="servico" id="servico" class="form-control">
+                    {% for options in form.servico %}
+                      {{ options }}
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <!-- Seleção de Barbeiros -->
+              <div class="form-group row">
+                  <label class="col-sm-2 col-form-label"> Selecione o Barbeiro</label>
+                  <div class="col-sm-10">
+                    <select name="barbeiros" id="barbeiros" class="form-control">
+                      {% for options in form.barbeiro %}
+                        {{options}}
+                      {% endfor %}
+                    </select>
+                </div>
+              </div>
+
+                <!-- Horario de atendimento -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"> {{ form.inicio_atendimento.label }}</label>
+                    <div class="col-sm-10">
+                      {{ form.inicio_atendimento(class="form-control date-time", id="start", onkeypress="DataHora(event, this)") }}
+                      <!-- <input type="text" name="start" class="form-control date-time" id="start" onkeypress="DataHora(event, this)"> -->
+                    </div>
+                  </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"> Fim do atendimento</label>
+                    <div class="col-sm-10">
+                      {{ form.fim_atendimento(class="form-control date-time", id="end", onkeypress="DataHora(event, this)") }}
+                      <!-- <input type="text" name="end" class="form-control" id="end" onkeypress="DataHora(event, this)"> -->
+                    </div>
+                </div>
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        <!--{{ form.submit(class="btn btn-success") }}-->
+                        <button type="submit" name="agendEvent" id="agendEvent" value="agendEvent" class="btn btn-danger">Agendar</button> 
+                      </div>
+                    </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('agendamento.static', filename='js/main.min.js') }}"></script>
+    <script src="{{ url_for('agendamento.static', filename='js/pt-br.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('agendamento.static', filename='js/scriptCalendar.js') }}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+              locale: "pt-br",
+              headerToolbar: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+              },
+              navLinks: true, // can click day/week names to navigate views
+              businessHours: true, // display business hours
+              editable: true,
+              selectable: true,
+              events: [
+                  {% for agendamento in agendamentos %}
+                      {% for servico in servico.query.filter_by(id=agendamento.servico_ID)%}
+                      {% for barbeiro in barbeiro.query.filter_by(id=agendamento.barbeiro_ID)%}
+                        {
+                            id : '{{agendamento.id}}',
+                            title: '{{ servico.desc }}',
+                            extendedProps: {
+                                preco: 'R${{ servico.preco }}',
+                                barbeiro: '{{ barbeiro.nome }}'
+                            },
+                            start: '{{agendamento.inicio_atendimento}}',
+                            end: '{{agendamento.fim_atendimento}}',
+                        },
+                      {% endfor %}
+                      {% endfor %}
+                  {% endfor %}
+              ],
+              eventClick: function(info) {
+                  // $("#apagarAgendamento").attr("href", "deleta_agendamento?id=" + info.event.id);
+                  $("#apagarAgendamento").on("click", function(){
+                      var id = info.event.id;
+                      $.ajax({
+                        url:"/deleta_agendamento",
+                        type: "DELETE",
+                        data: {id:id},
+                        success: function(retorno){
+                            if (retorno['sit']){
+                              $("#msg-edit").html(retorno['msg']);
+                              location.reload();
+                            }else{
+                                $("#msg-edit").html(retorno['msg']);
+                              }
+                          }
+                  })
+                });
+                  info.jsEvent.preventDefault();
+                  {% for agendamento in agendamentos %}
+                      /* modal de visualizacao */
+                      $('#visualizar #id').text(info.event.id)
+                      $('#visualizar #title').text(info.event.title)
+                      $('#visualizar #preco').text(info.event.extendedProps.preco)
+                      $('#visualizar #barbeiro').text(info.event.extendedProps.barbeiro)
+                      $('#visualizar #start').text(info.event.start.toLocaleString())
+                      $('#visualizar #end').text(info.event.end.toLocaleString())
+
+                      /* form de edicao */
+                      $('#visualizar #id').val(info.event.id)
+                      $('#editAgend #title').val(info.event.title)
+                      $('#editAgend #inico-atend-edit').val(info.event.start.toLocaleString())
+                      $('#editAgend #fim-atend-edit').val(info.event.end.toLocaleString())
+                      $('#editAgend #barbeiro').select(3)
+                      $('#visualizar').modal("show")
+                  {% endfor %}
+                },
+              select: function(info){
+                  $("#cadastrar #start").val(info.start.toLocaleString())
+                  $("#cadastrar #end").val(info.end.toLocaleString())
+                  $("#cadastrar").modal("show")
+              },
+              });
+          calendar.render();
+      });
+  </script>
+  <footer>
+  </br>
+
+   <p> Estamos localizados na Avenida Brigadeiro Manoel Rodrigues Jordão, 1148, Jd. Tupã, Barueri - SP. <a href="https://goo.gl/maps/3t4gbrBA8mxu8NE29">Clique aqui</a></br>
+  
+  <p>Nosso Horário de funcionamento é:</br>
+  Segunda a Sexta das 08:00 as 20:00</br>
+  Sábados das 08:00 as 19:00</p>
+  <ul class="icon-list">
+                <li class="nav-item"  >
+                    <a class="nav-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://pt-br.facebook.com/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                </li>
+            </ul>
+  <p>Desenvolvido por grupo de OPE Developer Minds.</p>
+
+  
+</footer>
+</body>
+</html>

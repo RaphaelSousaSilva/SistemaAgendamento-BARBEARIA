@@ -1,0 +1,166 @@
+{% extends 'menu.html' %}
+{% block title %}
+    Barbearia Dom Figaro
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('main.static', filename='css/estilo.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+{% endblock %}
+
+{% block content%}
+    <!-- home section -->
+    <section id="home">
+        <div class="home container">
+            <div>
+                <h1 class="main-title">Barbearia<span></span></h1>
+                <h1 class="main-title"><i style="margin-left: 20px;"    class="bi bi-scissors"></i>Dom Fígaro<i style="margin-left: 5px;"    class="bi bi-scissors"></i><span></span></h1>
+                <a href="#" type="button" class="cta">Agende seu horário<span></span></a>
+            </div>
+        </div>
+    </section>
+    <!-- end home section -->
+
+   
+
+
+
+    <!-- Service Section -->
+    <section id="services">
+        <div class="services container">
+            <div class="service-top">
+                <h1 class="section-title">Serviços</h1>
+                <p> Conheça alguns serviços e preços de nosso  salão!</p>
+            </div>
+            <div class="service-bottom">
+                <div class="service-item">
+                    <div class="icon-service"><img src="https://img.icons8.com/ios-filled/50/000000/short-beard.png"/></div>
+                    <h2>Barba</h2>
+                    <p>R$25</p>
+                </div>
+                <div class="service-item">
+                    <div class="icon-service"><img src="https://img.icons8.com/material-outlined/50/000000/barbershop.png"/></div>
+                    <h2>Corte Simples</h2>
+                    <p>R$30</p>
+                </div>
+                <div class="service-item">
+                    <div class="icon-service"><img src="https://img.icons8.com/ios-glyphs/50/000000/straight-razor--v1.png"/></div>
+                    <h2>Pezinho</h2>
+                    <p>R$20</p>
+                </div>
+                <div class="service-item">
+                    <div class="icon-service"><img src="https://img.icons8.com/ios/50/000000/hair-dryer.png"/></div>
+                    <h2>Seladinho</h2>
+                    <p>R$35</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Service Section -->
+
+    <!--galery section-->
+
+    <section id="galery">
+  
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" class="active" aria-current="true" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="{{ url_for('main.static', filename='./imgs/barba.jpg') }}"  class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Barba</h2>
+                    <p>Com nossa equipe, deixe sua barba perfeita.</p>
+                </div>
+                </div>
+                <div class="carousel-item">
+                <img src="{{ url_for('main.static', filename='./imgs/barba2.jpg') }}"  class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Corte Degradê</h2>
+                    <p>Detalhe no corte degradê, com a perfeição no alinhamento da barba.</p>
+                </div>
+                </div>
+                <div class="carousel-item">
+                <img src="{{ url_for('main.static', filename='./imgs/pezinho.jpg') }}"  class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Pezinho e Acabamento</h2>
+                    <p>Degradê com máquina zero, detalhe no pezinho acabado.</p>
+                </div>
+                </div>
+                <div class="carousel-item">
+                <img src="{{ url_for('main.static', filename='./imgs/corte4.jpg') }}" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Completo</h2>
+                    <p>Cabelo e barba com o melhor acabamento de nossa equipe.</p>
+                </div>
+                </div>
+                
+               
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span id="galleryButton" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span id="galleryButton" class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
+    </section>
+<!--end of galery section-->
+
+
+ <!-- About us Section -->
+
+    <section id="about">
+        <div class="about container">
+            <div class="col-left">
+                <div class="about-img">
+                    <!-- <img src="{{ url_for('static', filename='./imgs/fundoSobre.jpg') }}" alt="img"> -->
+                </div>
+            </div>
+            <div class="col-right">
+                <h1 class="about-title">Sobre nós</h1>
+                <p><strong>A Barbearia Dom Fígaro é uma empresa localizada na Avenida Brigadeiro Manoel Rodrigues Jordão, 1148, Jd. Tupã, Barueri - SP.
+                    Ainda somos um comércio ainda recente atuando durante 3 anos, porém ofereçemos nossos serviços com a maior atençao e profissionalismo possível. 
+                    Atualmente a barbearia possui uma média mensal em volumes de vendas com 450 serviços, com uma clientela destimada em 600 pessoas mensalmente
+                    Além de oferecer os serviços de barbearia, realizamos a venda de produtos cosméticos no local</strong></p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- End of about us section -->
+
+<!--links for carousel-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+<!--end links carousel-->
+  <footer>
+  </br>
+
+   <p> Estamos localizados na Avenida Brigadeiro Manoel Rodrigues Jordão, 1148, Jd. Tupã, Barueri - SP. <a href="https://goo.gl/maps/3t4gbrBA8mxu8NE29">Clique aqui</a></br>
+  
+  <p>Nosso Horário de funcionamento é:</br>
+  Segunda a Sexta das 08:00 as 20:00</br>
+  Sábados das 08:00 as 19:00</p>
+  <ul class="icon-list">
+                <li class="nav-item"  >
+                    <a class="nav-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://pt-br.facebook.com/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                </li>
+            </ul>
+  <p>Desenvolvido por grupo de OPE Developer Minds.</p>
+
+  
+</footer>
+{% endblock %}

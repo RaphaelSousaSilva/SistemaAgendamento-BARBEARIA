@@ -1,0 +1,68 @@
+{% extends 'menu.html' %}
+{% block title %}
+Página de Login
+{% endblock %}
+{% block style %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('auth.static', filename='css/cadastro.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="registration-form" id="login-form">
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+        <div class="form-icon">
+            <span><i class="bi bi-scissors"></i></span>
+        </div>
+        <div>
+            <h1>Entre</h1>
+        </div>
+        <div class="form-group">
+            {{ form.email(class="form-control item", placeholder="Email") }}
+        </div>
+        <div class="form-group">
+            {{ form.senha(class="form-control item", placeholder="Senha") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-block create-account") }}
+        </div>
+        <br>
+        <div class="checkbox mb-3">
+            <h6>Não tem uma conta?</h6>
+            <a class="btn btn-primary" href="{{ url_for('auth.cadastro_page') }}">Cadastre-se</a>
+         </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+  <footer>
+  </br>
+
+   <p> Estamos localizados na Avenida Brigadeiro Manoel Rodrigues Jordão, 1148, Jd. Tupã, Barueri - SP. <a href="https://goo.gl/maps/3t4gbrBA8mxu8NE29">Clique aqui</a></br>
+  
+  <p>Nosso Horário de funcionamento é:</br>
+  Segunda a Sexta das 08:00 as 20:00</br>
+  Sábados das 08:00 as 19:00</p>
+  <ul class="icon-list">
+                <li class="nav-item"  >
+                    <a class="nav-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://pt-br.facebook.com/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                </li>
+            </ul>
+  <p>Desenvolvido por grupo de OPE Developer Minds.</p>
+
+  
+</footer>
+
+{% endblock %}

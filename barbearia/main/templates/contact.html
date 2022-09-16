@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--menu-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        {% block style %}
+        {% endblock %}
+        <link rel="stylesheet" href="{{ url_for('main.static', filename='css/menu_contact.css') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='imgs/scissors.svg') }}" />
+        <title>
+            {% block title%}
+            {% endblock %}
+        </title>
+        <!--fim menu-->
+        
+        <!--links for contacts-->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+      
+        <!--end links contacts-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="{{ url_for('main.static', filename='css/contact.css') }}">
+       
+    </head>
+    <body>
+    <!--menu-->
+    {% if request.path not in ['/', 'home'] %}
+    <nav class="navbar navbar-expand-lg sticky">
+    {% else %}
+    <nav class="navbar navbar-expand-lg">
+    {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class='alert alert-{{category}} alert-dismissible' role="alert">
+                    <button href="#" class="close" data-dismiss="alert" aria-label="close">&times;</button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="content">
+            <div class="logo" {% if request.path == "/home" or request.path == "/" %} href="#home" {% else %} href="{{url_for('main.home_page')}}" {% endif %}><a href="#"><i class="bi bi-scissors"></i>Dom Fígaro<i style="margin-left: 5px;"    class="bi bi-scissors"></i></a></div>
+            <ul class="menu-list">
+                <div class="icon cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+                {% if request.path == "/home" or request.path == "/" %}
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#galery">Galeria</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="contact">Contato</a></li>
+                {% else %}
+                <li><a class="active" href="{{url_for('main.home_page')}}#home">Home</a></li>
+               
+                <li><a href="{{url_for('main.home_page')}}#services">Serviços</a></li>
+                <li><a href="{{url_for('main.home_page')}}#galery">Galeria</a></li>
+                 <li><a href="{{url_for('main.home_page')}}#about">Sobre</a></li>
+                <li><a href="{{url_for('main.contact_page')}}">Contato</a></li>
+                {% endif %}
+                <li><a href="{{url_for('agendamento.agendamento_page')}}">Agendamento</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a id="login" href="{{ url_for('auth.logout_page') }}">Sair</a></li>
+                {% else %}
+                    <li><a id="login" href="{{ url_for('auth.login_page') }}">Login</a></li>
+                {% endif %}
+            </ul>
+            <ul class="icon-list">
+                <li class="nav-item"  >
+                    <a class="nav-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://pt-br.facebook.com/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                </li>
+            </ul>
+            <div class="icon menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    {% block content%}
+    {% endblock %}
+
+    <script>
+        const body = document.querySelector("body");
+        const menu = document.querySelector(".menu-list");
+        const navbar = document.querySelector(".navbar");
+        const menuBtn = document.querySelector(".menu-btn");
+        const cancelBtn = document.querySelector(".cancel-btn");
+        menuBtn.onclick = ()=>{
+            menu.classList.add("active");
+            body.classList.add("disabledScroll");
+            menuBtn.classList.add("hide");
+        };
+        cancelBtn.onclick = ()=>{
+            menu.classList.remove("active");
+            body.classList.remove("disabledScroll");
+            menuBtn.classList.remove("hide");
+        };
+         window.onscroll = ()=>{
+            this.scrollY >20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+        };
+  
+    </script>
+
+    {% block scripts %}
+    {% endblock %}
+    <!--Fim menu-->
+
+        <div id='#contact'></div>
+            <div class="container contact-form">
+                <div class="contact-image">
+                    <img src="{{ url_for('static', filename='./imgs/tesoura2.png') }}" alt="img">
+                    <div>
+                    <h1 class="main-title col-12"><i style="margin-left: -100px;"    class="bi bi-scissors"></i>Dom Fígaro<i style="margin-right: -90px;"    class="bi bi-scissors"></i><span></span></h1>
+                    </div>
+                        <div class="icon-list">
+                            <div class="col-md-auto">
+                                <a class="insta-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                                <a class="watsapp-link" href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp fa-4x"></i></a>
+                                <a class="face-link" href="https://pt-br.facebook.com/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="https://api.staticforms.xyz/submit" method="post">
+                        <input type="hidden" name="accessKey" value="d30086da-b2d3-4a10-9632-b105f04eb358">
+                        <input type="hidden" name="redirectTo" value="https://barbeariadomfigaro.herokuapp.com/"> 
+                        <h2>Contate-nos</h2>
+                            <div class="row">
+                                <div class="col-md-auto">
+                                    <div class="form-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Nome *" required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="email" class="form-control" placeholder="Email *"required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="Telefone"  name="phone" id="telefone" class="form-control" placeholder="Telefone *"required="required"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <textarea name="message" class="form-control" placeholder="Escreva aqui sua mensagem *" required="required" style="width: 100%; height: 150px;"></textarea>
+                                    </div>
+                                     </div>
+                                    <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="btn btn-primary" type="submit" value="Enviar">
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+            </div>
+    </body>
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    
+    <script  type="text/javascript" src={{ url_for('main.static', filename='js/contact.js') }}></script>
+      <footer>
+  </br>
+
+   <p> Estamos localizados na Avenida Brigadeiro Manoel Rodrigues Jordão, 1148, Jd. Tupã, Barueri - SP. <a href="https://goo.gl/maps/3t4gbrBA8mxu8NE29">Clique aqui</a></br>
+  
+  <p>Nosso Horário de funcionamento é:</br>
+  Segunda a Sexta das 08:00 as 20:00</br>
+  Sábados das 08:00 as 19:00</p>
+  <ul class="icon-list">
+                <li class="nav-item"  >
+                    <a class="nav-link" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://web.whatsapp.com/" target="_blank"><i class="fab fa-whatsapp fa-2x"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://pt-br.facebook.com/" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                </li>
+            </ul>
+  <p>Desenvolvido por grupo de OPE Developer Minds.</p>
+
+  
+</footer>
+</html>

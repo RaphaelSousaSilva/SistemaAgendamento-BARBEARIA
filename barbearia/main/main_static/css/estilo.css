@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+*{
+    padding: auto;
+    margin: auto;
+    background-position: 100%;
+    list-style: none;
+    text-decoration: none;
+}
+html{
+    font-size: 12px;
+    font-family: "Montserrat", sans-serif;
+}
+a{
+    text-decoration: none;
+}
+p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: medium;
+    text-decoration: none;
+}
+.container{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* home section */
+#home .home{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+    justify-content: center;
+}
+#home{
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../imgs/barbearia1.jpg);
+   -webkit-background-size: cover;
+   -moz-background-size:  cover;
+   -o-background-size: cover;
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   position: relative;
+   height: 100%;
+   width: 100vw;
+ }
+#home .main-title{
+    display: block;
+    width:fit-content;
+    font-size: clamp(1em, 3em + 1vw, 8em);
+    font-weight: bolder;
+    position:relative;
+    color: white;
+    margin: left 5px;
+    /* animation: text_reveal .5s ease forwards;
+    animation-delay: .3s ; */
+}
+#home .main-title1{
+    display:block;
+    width:fit-content;
+    font-size: clamp(1em, 3em + 1vw, 4em);
+    font-weight: bolder;
+    position: relative;
+    color: white;
+    margin-left:auto;
+    /* animation: text_reveal .5s ease forwards;
+    animation-delay: .3s ; */
+}
+#home h1:nth-child(1){
+    padding: 0px 95px;
+
+}
+#home h1:nth-child(2){
+    margin-bottom: 30px;
+}
+#home h1 span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: crimson;
+
+}
+#home a .cta{
+    position: absolute;
+    top: 0px;
+    margin-left: 0px;
+    height: 0px;
+    width: auto;
+    background-color: crimson;
+  
+ 
+}
+#home .cta{
+    display: block;
+    padding: 20px 0px;
+    margin-left: 75px;
+    margin-right: 75px;
+
+    color: white;
+    background-color: transparent;
+    border: 2px solid crimson;
+    font-size: clamp(1vw ,1em, 2em);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: .3rem;
+    text-align: center;
+
+}
+#home .cta:hover{
+    color: white;
+    background-color: crimson;
+}
+/* end home section */
+
+/* Services section  */
+#services{
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../imgs/barbearia1.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size:  cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    
+}
+#services .services{
+    flex-direction: column;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+#services .section-title{
+    display:inline;
+    padding: 10px 10px;
+    color: white;
+    background-color: rgba(0, 0, 0,0.39);
+    border: 2px solid rgb(241, 237, 238);
+    margin-top: 10px;
+    font-size: 5rem;
+    font-weight: bold;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    text-align: center;
+    display:block;
+    width:fit-content;
+    font-size: clamp(1em, 3em + 1vw, 4em);
+    font-weight:bolder;
+    position: relative;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom:30px;
+}
+#services .service-top p{
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-top: 30px;
+    line-height: 2.5rem;
+    font-weight: 300px;
+    letter-spacing: .05rem;
+    color: white
+}
+#services .service-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#services .service-item{
+    flex-basis: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgba(247, 248, 251, 0.89);
+    background-size: cover;
+    margin: 10px 5%;
+}
+/* End of Services section  */
+
+/* About us section */
+#about{
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../imgs/barbearia1.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size:  cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+   
+}
+.about-title{
+    display:inline;
+    padding: 10px 10px;
+    color: white;
+    background-color: rgba(0, 0, 0,0.39);
+    border: 2px solid rgb(248, 243, 244);
+    margin-top: 10px;
+    font-size: 5rem;
+    font-weight: bold;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    text-align: center;
+    display:block;
+    width:fit-content;
+    font-size: clamp(1em, 3em + 1vw, 4em);
+    font-weight:bolder;
+    position: relative;
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom:30px;
+}
+#about .about{
+    flex-direction: column-reverse;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 20px;
+}
+#about .col-left{
+    width: 250px;
+    height: 360px;
+}
+#about .col-right{
+    width: 100%;
+}
+#about .col-right h1{
+    display:block;
+    width:fit-content;
+    font-size: clamp(1em, 3em + 1vw, 4em);
+    font-weight:bolder;
+    position: relative;
+    color: rgb(248, 246, 246);
+    margin-left:auto;
+    margin-right: auto;
+    margin-bottom:30px;
+
+   
+}
+#about .col-right p{
+    width: 300px; 
+    height: 460;
+    border: 2px solid rgb(252, 251, 251);
+    padding-top: 200;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    text-align:center;
+    display:grid;
+    font-size:medium;
+   
+    color: rgb(255, 247, 247);
+}
+#about .about-img img{
+    flex-basis: 50%;
+    height: fit-content;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+#galery{
+    background-color: black;
+    -webkit-background-size: cover;
+    -moz-background-size:  cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+}
+#galery .carousel-inner{
+    max-width: 900px;
+    max-height: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 100px;
+    background-position: auto;
+    list-style: none;
+    text-decoration: none;
+    background-color:black;
+}
+#galleryButton{
+    height: 50px;
+    width: 50px;
+    outline: crimson;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: black;
+}
+
+#contact{
+    background-color:black;
+}
+#contact h1{
+    color: white;
+}
+footer {
+    position:static;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    color: rgb(189, 189, 189);
+    width: 100%;
+    height: 250px;    
+    text-align: center;
+    margin-bottom: -0px;
+    list-style-position: inside;
+  
+    
+}
+
