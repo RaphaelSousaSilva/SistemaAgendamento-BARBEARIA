@@ -1,6 +1,10 @@
 # URL
 O projeto está hospedado na seguinte url: https://barbeariadomfigaro.herokuapp.com
 
+# Breve Explicação
+Está é uma copia do projeto principal, que está hospedado no link acima, porém sem arquivos com informações sigilosas
+
+
 # OPE_BARBEARIA
 <p> Antes de iniciar instale o arquivo requests.txt através do comando pip install -r requirements.txt, no terminal do repositório.</p>
 
